@@ -20,17 +20,17 @@ public class GameService {
     private static final Logger logger = LoggerFactory.getLogger(GameService.class);
 
     @Autowired
-    LeadBoardRepository leadboard;
+    LeadBoardRepository leadBoardRepository;
 
     @Autowired
     RandomService randomService;
 
-    public Leadboard getLeadboard() {
-        return leadboard.getLeadboard();
+    public Leadboard getLeadBoard() {
+        return leadBoardRepository.getLeadboard();
     }
 
     public List<HashMap<String, Map<Player, Integer>>> getGameToPointsTable() {
-        return leadboard.getLeadboard().getGames().stream()
+        return leadBoardRepository.getLeadboard().getGames().stream()
                 .map(g -> {
                     var map = new HashMap<String, Map<Player, Integer>>();
                     map.put(g.getId(), g.getPointsInGame());
@@ -45,11 +45,11 @@ public class GameService {
 
 
     public Game getGame(String gameId) {
-        return leadboard.getGame(gameId);
+        return leadBoardRepository.getGame(gameId);
     }
 
     public AnswerResponse answerQuestion(AnswerRequest request) {
-        var game = leadboard.getGame(request.getGameId());
+        var game = leadBoardRepository.getGame(request.getGameId());
         if (game == null) {
             logger.error("could not find game with id " + request.getGameId());
             return null;
@@ -101,7 +101,7 @@ public class GameService {
                 p.setDisplayName("joe-" + p.getId());
                 addPoints(randomService.nextInt(10), g, p);
             }
-            leadboard.saveGame(g);
+            leadBoardRepository.saveGame(g);
         }
     }
 }

@@ -20,7 +20,7 @@ public class GamesController {
 
     @GetMapping("/board")
     public Leadboard getAllGames() {
-        return gameService.getLeadboard();
+        return gameService.getLeadBoard();
     }
 
     @GetMapping("/board/table")
