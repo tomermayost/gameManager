@@ -4,6 +4,8 @@ import com.example.gameManager.domains.*;
 import com.example.gameManager.dtos.AnswerRequest;
 import com.example.gameManager.dtos.AnswerResponse;
 import com.example.gameManager.repos.LeadBoardRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class GameService {
+
+    private static final Logger logger = LoggerFactory.getLogger(GameService.class);
 
     @Autowired
     LeadBoardRepository leadboard;
@@ -47,6 +51,7 @@ public class GameService {
     public AnswerResponse answerQuestion(AnswerRequest request) {
         var game = leadboard.getGame(request.getGameId());
         if (game == null) {
+            logger.error("could not find game with id " + request.getGameId());
             return null;
         }
         for (Question q : game.getQuestions()) {
@@ -74,6 +79,7 @@ public class GameService {
         Player player = new Player();
         player.setDisplayName(userName);
         game.updatePointsInGame(player, pointsEarned);
+        logger.info("created new player " + player.getDisplayName());
     }
 
     @PostConstruct
