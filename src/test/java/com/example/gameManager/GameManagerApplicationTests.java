@@ -71,5 +71,17 @@ class GameManagerApplicationTests {
         Assert.isTrue(response.getPointsEarned() > 0, "points earned is 0");
     }
 
+    @Test
+    void answerInCorrectNewPlayer() {
+        var game = gameService.getLeadboard().getGames().iterator().next();
+        var answer = new AnswerRequest();
+        answer.setAnswer("blabla");
+        answer.setGameId(game.getId());
+        answer.setUserName("TomerMayost");
+
+        var response = gameService.answerQuestion(answer);
+        Assert.isTrue(response.getStatus().equals(AnswerStatus.INCORRECT), "bad response");
+        Assert.isTrue(response.getPointsEarned() == 0, "points earned is not 0");
+    }
 
 }

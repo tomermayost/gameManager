@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class LeadBoardRepository {
     //db init
-    Leadboard leadboard = new Leadboard();
+    private Leadboard leadboard = new Leadboard();
 
     public Leadboard getLeadboard() {
         return leadboard;

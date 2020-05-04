@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Leadboard {
 
-    Set<Game> games;
+    private Set<Game> games;
 
     public Leadboard() {
         this.games = new HashSet<>();
