@@ -20,20 +20,23 @@ public class GamesController {
 
     @GetMapping("/board")
     public Leadboard getAllGames() {
+//        for debugging purposes
         return gameService.getLeadBoard();
     }
 
     @GetMapping("/board/table")
     public List<HashMap<String, Map<Player, Integer>>> getGamesTable() {
+        //        for debugging purposes
+
         return gameService.getGameToPointsTable();
     }
 
-    @GetMapping("/board/{gameId}")
-    public Game getGame(@PathVariable("gameId") String gameId) {
+    @GetMapping("/{gameId}")
+    public Game getLeadBoardForGame(@PathVariable("gameId") String gameId) {
         return gameService.getGame(gameId);
     }
 
-    @PostMapping("/board")
+    @PostMapping("/answer")
     public AnswerResponse answerQuestion(@RequestBody AnswerRequest request) {
         return gameService.answerQuestion(request);
     }

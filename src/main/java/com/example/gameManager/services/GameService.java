@@ -72,7 +72,7 @@ public class GameService {
         for (Player p : game.getPlayers()) {
             if (p.getDisplayName().equals(userName)) {
                 p.setPoints(p.getPoints() + pointsEarned);
-                game.getPointsInGame().put(p, p.getPoints());
+                game.getPointsInGameForUpdate().put(p, p.getPoints());
                 return;
             }
         }

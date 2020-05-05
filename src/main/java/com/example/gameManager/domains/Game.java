@@ -49,6 +49,10 @@ public class Game {
         return PointsInGameSorter.sortByValue(pointsInGame);
     }
 
+    public Map<Player, Integer> getPointsInGameForUpdate() {
+        return pointsInGame;
+    }
+
     public Set<Question> getQuestions() {
         return questions;
     }
