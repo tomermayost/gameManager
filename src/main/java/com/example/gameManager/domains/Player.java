@@ -22,7 +22,6 @@ public class Player {
         this.displayName = displayName;
     }
 
-
     @Override
     public String toString() {
         return displayName;

@@ -1,24 +1,28 @@
 package com.example.gameManager.domains;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Leadboard {
 
-    private Set<Game> games;
+    private Map<String, Game> games;
 
     public Leadboard() {
-        this.games = new HashSet<>();
+        this.games = new HashMap<>();
     }
 
-    public Set<Game> getGames() {
-        return games;
+    public Game getGame(String id) {
+        return games.get(id);
     }
 
-    public void addGame(Game g){
-        games.add(g);
+    public Collection<Game> getGames() {
+        return  games.values();
     }
-    public void setGames(Set<Game> games) {
+
+    public void addGame(Game g) {
+        games.put(g.getId(), g);
+    }
+
+    public void setGames(Map<String, Game> games) {
         this.games = games;
     }
 }

@@ -2,12 +2,14 @@ package com.example.gameManager.domains;
 
 
 import com.example.gameManager.utils.PointsInGameSorter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.*;
 
 public class Game {
 
     private final String id;
+    @JsonIgnore
     private Set<Player> players;
     private Map<Player, Integer> pointsInGame;
     private Set<Question> questions;
@@ -49,6 +51,7 @@ public class Game {
         return PointsInGameSorter.sortByValue(pointsInGame);
     }
 
+    @JsonIgnore
     public Map<Player, Integer> getPointsInGameForUpdate() {
         return pointsInGame;
     }

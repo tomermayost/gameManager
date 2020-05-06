@@ -18,11 +18,6 @@ public class LeadBoardRepository {
     }
 
     public Game getGame(String gameId) {
-        for (Game game : leadboard.getGames()) {
-            if (game.getId().equals(gameId)) {
-                return game;
-            }
-        }
-        return null;
+        return leadboard.getGame(gameId);
     }
 }
