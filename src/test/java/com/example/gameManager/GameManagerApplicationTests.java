@@ -20,7 +20,7 @@ class GameManagerApplicationTests {
 
     @Test
     void answerCorrect() {
-        var game = gameService.getLeadBoard().getGames().iterator().next();
+        var game = gameService.getGames().iterator().next();
         var answer = new AnswerRequest();
         answer.setAnswer("YES");
         answer.setGameId(game.getId());
@@ -35,7 +35,7 @@ class GameManagerApplicationTests {
 
     @Test
     void answerInCorrect() {
-        var game = gameService.getLeadBoard().getGames().iterator().next();
+        var game = gameService.getGames().iterator().next();
         var answer = new AnswerRequest();
         answer.setAnswer("blabla");
         answer.setGameId(game.getId());
@@ -50,7 +50,7 @@ class GameManagerApplicationTests {
 
     @Test
     void pointsInGame() {
-        var game = gameService.getLeadBoard().getGames().iterator().next();
+        var game = gameService.getGames().iterator().next();
         Map<Player, Integer> pointsInGame = game.getPointsInGame();
         var player = game.getPlayers().iterator().next();
 
@@ -60,7 +60,7 @@ class GameManagerApplicationTests {
 
     @Test
     void answerCorrectNewPlayer() {
-        var game = gameService.getLeadBoard().getGames().iterator().next();
+        var game = gameService.getGames().iterator().next();
         var answer = new AnswerRequest();
         answer.setAnswer("YES");
         answer.setGameId(game.getId());
@@ -73,7 +73,7 @@ class GameManagerApplicationTests {
 
     @Test
     void answerInCorrectNewPlayer() {
-        var game = gameService.getLeadBoard().getGames().iterator().next();
+        var game = gameService.getGames().iterator().next();
         var answer = new AnswerRequest();
         answer.setAnswer("blabla");
         answer.setGameId(game.getId());

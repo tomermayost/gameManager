@@ -19,15 +19,8 @@ public class GamesController {
     GameService gameService;
 
     @GetMapping("/board")
-    public Leadboard getAllGames() {
-//        for debugging purposes
-        return gameService.getLeadBoard();
-    }
-
-    @GetMapping("/board/table")
     public List<HashMap<String, Map<Player, Integer>>> getGamesTable() {
         //        for debugging purposes
-
         return gameService.getGameToPointsTable();
     }
 

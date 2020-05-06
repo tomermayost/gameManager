@@ -3,7 +3,7 @@ package com.example.gameManager.services;
 import com.example.gameManager.domains.*;
 import com.example.gameManager.dtos.AnswerRequest;
 import com.example.gameManager.dtos.AnswerResponse;
-import com.example.gameManager.repos.LeadBoardRepository;
+import com.example.gameManager.repos.GamesRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +20,13 @@ public class GameService {
     private static final Logger logger = LoggerFactory.getLogger(GameService.class);
 
     @Autowired
-    LeadBoardRepository leadBoardRepository;
+    GamesRepository gamesRepository;
 
     @Autowired
     RandomService randomService;
 
-    public Leadboard getLeadBoard() {
-        return leadBoardRepository.getLeadboard();
-    }
-
     public List<HashMap<String, Map<Player, Integer>>> getGameToPointsTable() {
-        return leadBoardRepository.getLeadboard().getGames().stream()
+        return gamesRepository.getGames().stream()
                 .map(g -> {
                     var map = new HashMap<String, Map<Player, Integer>>();
                     map.put(g.getId(), g.getPointsInGame());
@@ -45,11 +41,15 @@ public class GameService {
 
 
     public Game getGame(String gameId) {
-        return leadBoardRepository.getGame(gameId);
+        return gamesRepository.getGame(gameId);
+    }
+
+    public Collection<Game> getGames() {
+        return gamesRepository.getGames();
     }
 
     public AnswerResponse answerQuestion(AnswerRequest request) {
-        var game = leadBoardRepository.getGame(request.getGameId());
+        var game = gamesRepository.getGame(request.getGameId());
         if (game == null) {
             logger.error("could not find game with id " + request.getGameId());
             return null;
@@ -101,7 +101,7 @@ public class GameService {
                 p.setDisplayName("joe-" + p.getId());
                 addPoints(randomService.nextInt(10), g, p);
             }
-            leadBoardRepository.saveGame(g);
+            gamesRepository.saveGame(g);
         }
     }
 }

@@ -2,11 +2,11 @@ package com.example.gameManager.domains;
 
 import java.util.*;
 
-public class Leadboard {
+public class GamesContainer {
 
     private Map<String, Game> games;
 
-    public Leadboard() {
+    public GamesContainer() {
         this.games = new HashMap<>();
     }
 
