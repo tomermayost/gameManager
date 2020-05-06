@@ -15,7 +15,7 @@ public class Game {
     private Set<Question> questions;
 
     public Game() {
-        id = UUID.randomUUID().toString();
+        id = "Game-" + UUID.randomUUID().toString();
         players = new HashSet<>();
         pointsInGame = new HashMap<>();
         questions = new HashSet<>();

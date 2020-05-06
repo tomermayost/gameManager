@@ -98,7 +98,7 @@ public class GameService {
             g.setQuestions(Set.of(question1, question2));
             for (int j = 0; j < randomService.nextInt(10) + 1; j++) {
                 Player p = new Player();
-                p.setDisplayName("joe-" + p.getId());
+                p.setDisplayName("Player-" + p.getId());
                 addPoints(randomService.nextInt(10), g, p);
             }
             gamesRepository.saveGame(g);
